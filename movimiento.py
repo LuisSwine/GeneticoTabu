@@ -1,3 +1,4 @@
+#DEFINIMOS LA CLASE MOVIMIENTO PARA GUARDAR INFORMACIÓN RELEVANTE
 class Movimiento:
     id_transaccion = None
     fecha = None
@@ -38,6 +39,7 @@ class Movimiento:
         self.comprobante = comprobante
         pass
     
+    #Definimos un método para poder imprimir la información del movimiento
     def printMovimiento(self):
         print("id_transaccion: ", self.id_transaccion)
         print("fecha: ", self.fecha)

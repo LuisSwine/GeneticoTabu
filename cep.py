@@ -1,3 +1,4 @@
+#Definimos la clase CEP donde rescataremos la información principal de los Comprobantes Electrónicos de Pago
 class CEP:
     fecha = None
     clave_rastreo = None
@@ -13,7 +14,7 @@ class CEP:
     cuenta_emisor = None
     banco_emisor = None
     
-    #Declaramos el contructor
+    #Declaramos el contructor de la clase para crear las instacias u objetos
     def __init__(self, fecha, clave_rastreo, monto, iva, concepto, rfc_receptor, nombre_receptor, cuenta_receptor, banco_receptor, rfc_emisor, nombre_emisor, cuenta_emisor, banco_emisor):
         self.fecha = fecha
         self.clave_rastreo = clave_rastreo

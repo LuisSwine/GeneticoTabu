@@ -1,30 +1,34 @@
+#Importamos el modulo funcion pues lo utilizaremos
 import funcion
 
 #Implementamos la busqueda tabu
 def tabu_search(solucion_inicial, tabu_length, monto_objetivo, vector_candidatos, global_solution):
-    current_solution = solucion_inicial.copy()
-    best_solution = current_solution
-    #best_fitness = funcion(current_solution, suma)
-    best_fitness = funcion.calidad_candidato(monto_objetivo, current_solution, vector_candidatos)
-    tabu_list = []
-    criterio = True
-    iteracion = 0
+    current_solution = solucion_inicial.copy() #Creamos una copia del vector que se nos pasa como solucion inicial
+    best_solution = current_solution #Inicializamos el valor de la mejor solución con la solucion inicial
+    
+    best_fitness = funcion.calidad_candidato(monto_objetivo, current_solution, vector_candidatos) #Evaluamos la aptitud de la solucion inicial y la asignamos a la mejor aptitud
+    tabu_list = [] #Inicializamos en blanco la búsqueda tabú
+    criterio = True #Inicializamos el criterio de parada
+    iteracion = 0 #Inicializamos el contador de iteraciones 
 
+    #Mientras no se cumpla uno de los criterios de parada
     while criterio:
-        print(f"Iteracion {iteracion}")
-        iteracion += 1
+        #Imprimimos a manera informativa los datos de la iteración
+        print(f"Iteracion {iteracion}") 
+        iteracion += 1 #Actualizamos el número de iteración
         print(f"Mejor fitness {best_fitness}")
         print(f"Mejor solution {best_solution}")
 
         #TODO: Mejorar la generación de vecindario
-        vecinos = []
+        vecinos = [] #Inicializamos el vector de vecinos del vector solución actual
+        #Generamos el vecindario de soluciones
         for i in range(len(current_solution)):
           # Generamos un vecino cambiando el bit en la posición i.
           nuevo_vector = current_solution.copy()
           nuevo_vector[i] = not nuevo_vector[i]
           vecinos.append(nuevo_vector)
 
-        # Seleccione el mejor vecino que no esté en la lista tabú
+        # Seleccionamos el mejor vecino que no esté en la lista tabú
         best_neighbor = None
         best_neighbor_fitness =  float('-inf')
         for neighbor in vecinos:
@@ -47,6 +51,9 @@ def tabu_search(solucion_inicial, tabu_length, monto_objetivo, vector_candidatos
         if len(tabu_list) > tabu_length:
             tabu_list.pop(0)
 
+        #Actualizamos el valor del criterio de parada verificando que no se haya cumplido alguno de los criterios definidos
+        #que son alcanzar el valor objetivo o un limite de iteraciones
         if best_fitness == global_solution or iteracion == 1000: criterio = False
 
+    #Retornamos el mejor vector, su aptitud y el numero de iteraciones ejecutadas. 
     return best_solution, best_fitness, iteracion

@@ -1,5 +1,5 @@
+#Definimos la clase factura donde guardaremos los datos importantes de la factura
 class Factura:
-    
     uuid = None
     nombre_receptor = None
     rfc_receptor = None
@@ -11,6 +11,7 @@ class Factura:
     vigencia = None
     divisa = None
         
+    #Definimos el constructor de la clase
     def __init__(self, uuid, nombre_receptor, rfc_receptor, nombre_emisor, rfc_emisor, fecha_emision, monto, metodo_pago, vigencia, divisa):
         self.uuid = uuid
         self.nombre_receptor = nombre_receptor
@@ -24,6 +25,7 @@ class Factura:
         self.divisa = divisa
         pass
     
+    #Definimos un método para imprimir los valores del objeto
     def showFactura(self):
         print("UUID de la factura: ", self.uuid)
         print("Nombre del receptor: ", self.nombre_receptor)

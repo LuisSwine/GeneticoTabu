@@ -23,10 +23,12 @@ uuidFactura = input("Ingrese el uuid de la factura que desea conciliar: ")
 resultado_cuentas_pp = list(filter(lambda obj: obj.uuid == uuidFactura, cuentas_por_pagar))
 resultado_cuentas_pc = list(filter(lambda obj: obj.uuid == uuidFactura, cuentas_por_cobrar))
 
+#Instanciamos las variables que serán los datos de entrada para el algoritmo
 factura = None
 movimientos_candidatos = None
 flag_flujo = 0
 
+#Inicialiazamos los espacios de búqueda
 if resultado_cuentas_pp:
     factura = resultado_cuentas_pp[0]
     movimientos_candidatos = egresos
@@ -36,6 +38,7 @@ if resultado_cuentas_pc:
     factura = resultado_cuentas_pc[0]
     movimientos_candidatos = ingresos
     
+#Mostramos la información de la factura seleccionada
 factura.showFactura()
 
 #Ahora aplicamos los filtros para definir el espacio de búsqueda
@@ -46,11 +49,12 @@ movimientos_candidatos = filtro.filtrar_por_fecha(factura.metodo_pago, factura.f
 #Ahora ordenamos los movimientos por monto de mayor a menor
 movimientos_candidatos = sorted(movimientos_candidatos, key=lambda movimiento: movimiento.monto, reverse=True)
 
+#Definimos los hiperparametros del algoritmo
 tam_poblacion = len(movimientos_candidatos)
 porcentaje_mutacion = 0.16
-
 global_solution = 1
 
+#Ejecutamos el algoritmo
 propuesta, best_fitness, worst_fitness, generacion, iteraciones_tabu = genetic_algorithm.algoritmoGeneticoHibrido(
       tam_poblacion,
       porcentaje_mutacion,
@@ -59,6 +63,7 @@ propuesta, best_fitness, worst_fitness, generacion, iteraciones_tabu = genetic_a
       movimientos_candidatos
       )
 
+#Mostramos la propuesta generada por el algoritmo
 print(propuesta)
 for i in range(0, len(propuesta)):
     if propuesta[i] == 1:

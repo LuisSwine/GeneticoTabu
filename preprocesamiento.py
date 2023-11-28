@@ -1,13 +1,14 @@
+#PRIMERO IMPORTAMOS TODAS LAS LIBRERIAS NECESARIAS
 import pandas as pd
 import datetime
-import warnings
 import math
 
-
+#DESPUES IMPORTAMOS LAS CLASE NECESARIAS DE SUS RESPECTIVOS MODULOS
 import factura
 import movimiento
 import cep
 
+#Definimos la funcion para limpiar las facturas y convertir cada fila del dataset en un objeto de la clase correspondiente
 def clean_cuentas(pd_df):
     arreglo_cuentas = []
     for index, row in pd_df.iterrows():
@@ -26,6 +27,8 @@ def clean_cuentas(pd_df):
         arreglo_cuentas.append(nueva_factura)
         
     return arreglo_cuentas
+  
+#Defimos la funcion para limpiar los movimientos y convertir cada fila del dataset en un objeto de la clase correspondiente
 def clean_movimientos(pd_df):
     arreglo_ingresos = []
     arreglo_egresos = []
@@ -73,44 +76,10 @@ def clean_movimientos(pd_df):
             comprobante
         )
         
+        #Al final también clasificamos entre ingresos y egresos para tener identificada esta información
         if move.tipo_movimiento in ['Ingreso', 'Ingreso interbancario']:
             arreglo_ingresos.append(move)
         elif move.tipo_movimiento in ['Egreso', 'Egreso interbancario']:
             arreglo_egresos.append(move)
         
     return arreglo_ingresos, arreglo_egresos
-
-
-#Fecha formato AAAA/MM/DD
-def filtraPorFecha(df, nombreCampoFecha, fechaFactura, tipo): 
-  matches = pd.DataFrame()
-  matches = df.head(0)
-  matches = matches.copy()
-  splitDateFac = fechaFactura.split('/')
-  year = int(splitDateFac[2])
-  month = int(splitDateFac[1])
-  day = 1
-
-  if tipo == "PUE":
-    if(month==1):
-      month = 12
-      year = year-1
-    else:
-      month = month-1
-    print("Buscando desde ",str(year)+"/"+str(month))
-  elif tipo == "PPD":
-    year = year-1
-    month = 1
-    print("Buscando desde ",str(year)+"/"+str(month))
-  else:
-    print("Tipo invalido")
-
-  for index, row in df.iterrows():
-    item = row[nombreCampoFecha]
-    splitDateMov = item.split('/')
-    yearMov = int(splitDateMov[2])
-    monthMov = int(splitDateMov[1])
-    if yearMov>=year and monthMov>=month:
-      matches.loc[len(matches)] = row
-
-  return matches

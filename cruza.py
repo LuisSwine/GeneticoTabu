@@ -1,5 +1,7 @@
+#IMPORTAMOS LAS LIBRERIAS NECESARIAS
 import random
 
+#DEFINIMOS LAS DIFERENTES ESTRATEGIAS DE CRUZA QUE PODRÍAMOS UTILIZAR
 def cruza_dos_puntos(parent1, parent2):
     # Asegúrate de que los cromosomas tengan la misma longitud
     assert len(parent1) == len(parent2), "Los cromosomas deben tener la misma longitud"
