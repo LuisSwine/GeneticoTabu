@@ -21,7 +21,7 @@ def algoritmoGeneticoHibrido(tam_poblacion, porcentaje_mutacion, global_solution
 
     #PRIMERO GENERAMOS LA POBLACION INICIAL
     poblacion_inicial = poblacion.Poblacion(tam_poblacion, vector_movimientos, monto_objetivo) #Instanciamos un objeto de la clase población
-    poblacion_inicial.inicializarPoblacion() #Utilizamos el método correspondiente para inicializar la población
+    poblacion_inicial.inicializarPoblacionHeuristic() #Utilizamos el método correspondiente para inicializar la población
     poblacion_inicial.setAllFitness() #Asigamos la aptitud de cada uno de los individuos de la población
 
     #CREAMOS LOS LISTADOS DE CONTROL

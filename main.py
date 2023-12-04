@@ -51,8 +51,10 @@ movimientos_candidatos = sorted(movimientos_candidatos, key=lambda movimiento: m
 
 #Definimos los hiperparametros del algoritmo
 tam_poblacion = len(movimientos_candidatos)
-porcentaje_mutacion = 0.16
+porcentaje_mutacion = 0.5
 global_solution = 1
+
+print(tam_poblacion)
 
 #Ejecutamos el algoritmo
 propuesta, best_fitness, worst_fitness, generacion, iteraciones_tabu = genetic_algorithm.algoritmoGeneticoHibrido(

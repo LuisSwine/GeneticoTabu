@@ -18,6 +18,12 @@ class Cromosoma:
         self.vector_solution[random.randint(0, valores)] = 1 #De forma aleatoria convertimos uno de los 0 a 1, seleccionando ese movimiento
         pass
 
+    def heuristicInicialization(self, lista_movimientos, indice):
+        valores = len(lista_movimientos) - 1 #Definimos la ultima posición de cada vector
+        self.vector_solution = [0 for _ in lista_movimientos] #Inicializamos el vector con puros 0's
+        self.vector_solution[indice] = 1 #Unicamente seleccionamos el movimiento correspondiente al indice seleccionado
+        pass  
+
     """
     Método creado únicamente para asignar la aptitud al atributo del objeto
     """

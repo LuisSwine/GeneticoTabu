@@ -16,6 +16,22 @@ def uniform_selection(tam_poblacion):
     #Retornamos el vector de indices
     return indices
 
+def seleccion_por_ruleta(poblacion):
+    #Extraemos la lista de aptitudes
+    aptitudes = [individuo.fitness for individuo in poblacion]
+    
+    # Calcula la suma total de las aptitudes
+    suma_aptitudes = sum(aptitudes)
+
+    # Calcula las probabilidades de selección para cada individuo
+    probabilidades = [aptitud / suma_aptitudes for aptitud in aptitudes]
+
+    # Realiza la selección de padres por ruleta
+    padres_seleccionados = random.choices(poblacion, weights=probabilidades, k=len(poblacion))
+
+    return padres_seleccionados
+
+
 #Seleccion mediante torneo
 def seleccion_sobrevivientes_torneo(poblacion, emparejamiento, max_min):
     indices = [] #Inicializamos un vector de indices 

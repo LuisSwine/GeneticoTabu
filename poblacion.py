@@ -22,6 +22,16 @@ class Poblacion:
             new_cromosoma.randomInitialization(self.lista_movimientos) #Inicializamos los valores del objeto
             self.poblacion.append(new_cromosoma) #Añadimos el objeto a la población
         pass
+    
+    def inicializarPoblacionHeuristic(self):
+        self.poblacion = [] #Creamos una lista vacia para almacenar los cromosomas de la poblacion
+
+        #Para cada elemento de la poblacion
+        for i in range(self.tam_poblacion):
+            new_cromosoma = cromosoma.Cromosoma() #Instanciamos un objeto de la clase cromosoma
+            new_cromosoma.heuristicInicialization(self.lista_movimientos, i) #Inicializamos los valores del objeto
+            self.poblacion.append(new_cromosoma) #Añadimos el objeto a la población
+        pass
 
     #Definimos un método para imprimir los cromosomas de la población 
     def printPoblacion(self):
