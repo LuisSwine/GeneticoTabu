@@ -2,7 +2,6 @@ import pandas as pd
 import preprocesamiento
 import filtro
 import genetic_algorithm
-import funcion
 
 print('Bienvenido a la primera prueba de conciliación automática con búsqueda tabú')
 
@@ -70,11 +69,3 @@ print(propuesta)
 for i in range(0, len(propuesta)):
     if propuesta[i] == 1:
         movimientos_candidatos[i].printMovimiento()
-
-
-
-
-
-
-
-

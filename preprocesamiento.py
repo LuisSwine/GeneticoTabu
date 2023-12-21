@@ -58,6 +58,7 @@ def clean_movimientos(pd_df):
         )
         move = movimiento.Movimiento(
             row['idTransaccion'],
+            row['Empresa'],
             datetime.datetime.strptime(row['Fecha'], '%d/%m/%y'),
             row['Concepto'],
             row['Monto'],
@@ -77,9 +78,9 @@ def clean_movimientos(pd_df):
         )
         
         #Al final también clasificamos entre ingresos y egresos para tener identificada esta información
-        if move.tipo_movimiento in ['Ingreso', 'Ingreso interbancario']:
+        if move.tipo_movimiento in ['Ingreso', 'Ingreso interbancario'] or pd.isna(move.tipo_movimiento):
             arreglo_ingresos.append(move)
-        elif move.tipo_movimiento in ['Egreso', 'Egreso interbancario']:
+        elif move.tipo_movimiento in ['Egreso', 'Egreso interbancario'] or pd.isna(move.tipo_movimiento):
             arreglo_egresos.append(move)
         
     return arreglo_ingresos, arreglo_egresos

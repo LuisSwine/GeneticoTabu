@@ -1,6 +1,7 @@
 #DEFINIMOS LA CLASE MOVIMIENTO PARA GUARDAR INFORMACIÓN RELEVANTE
 class Movimiento:
     id_transaccion = None
+    empresa = None
     fecha = None
     concepto = None
     monto = None
@@ -19,8 +20,9 @@ class Movimiento:
     comprobante = None
     
     #Declaramos el constructor de la clase
-    def __init__(self, id_transaccion, fecha, concepto, monto, moneda, referencia, clave_rastreo, tipo_movimiento, banco_emisor, cuenta_emisor, nombre_emisor, rfc_emisor, banco_receptor, cuenta_receptor, nombre_receptor, rfc_receptor, comprobante):
+    def __init__(self, id_transaccion, empresa, fecha, concepto, monto, moneda, referencia, clave_rastreo, tipo_movimiento, banco_emisor, cuenta_emisor, nombre_emisor, rfc_emisor, banco_receptor, cuenta_receptor, nombre_receptor, rfc_receptor, comprobante):
         self.id_transaccion = id_transaccion
+        self.empresa = empresa
         self.fecha = fecha
         self.concepto = concepto
         self.monto = monto
@@ -42,6 +44,7 @@ class Movimiento:
     #Definimos un método para poder imprimir la información del movimiento
     def printMovimiento(self):
         print("id_transaccion: ", self.id_transaccion)
+        print("empresa: ", self.empresa)
         print("fecha: ", self.fecha)
         print("concepto: ", self.concepto)
         print("monto: ", self.monto)
