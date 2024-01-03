@@ -8,7 +8,7 @@ import genetic_algorithm
 def realizar_conciliacion(uuid):
     
     #Primero vamos a abrimos todos los datasets
-    movimientos = pd.read_csv('Data/movimientos_normalized_3.csv')
+    movimientos = pd.read_csv('Data/movimientos_normalized_4.csv')
     facturasCxC = pd.read_csv('Data/reportCXC_20231113.csv')
     facturasCxP = pd.read_csv('Data/reportCXP_20231113.csv')
 
@@ -42,22 +42,21 @@ def realizar_conciliacion(uuid):
     if resultado_cuentas_pc:
         factura = resultado_cuentas_pc[0]
         movimientos_candidatos = ingresos
-        
-    factura.showFactura()
+    
     #En las cuentas por cobrar filtramos los movimientos que en el valor de 'Empresa' tengan al emisor de la factura
     if flag_flujo == 0:
         movimientos_candidatos = list(filter(lambda obj: obj.empresa == factura.nombre_emisor, movimientos_candidatos))
         #Ahora filtramos al receptor de la factura
         #Mediante el RFC
-        filtro_1 = lambda obj: obj.rfc_receptor == factura.rfc_emisor
-        filtro_2 = lambda obj: obj.comprobante.rfc_receptor == factura.rfc_emisor
-        filtro_3 = lambda obj: obj.nombre_receptor == factura.nombre_remisor
-        filtro_4 = lambda obj: obj.comprobante.nombre_receptor == factura.nombre_emisor
-        filtro_5 = lambda obj: obj.rfc_emisor == factura.rfc_receptor
-        filtro_6 = lambda obj: obj.comprobante.rfc_emisor == factura.rfc_receptor
-        filtro_7 = lambda obj: obj.nombre_emisor == factura.nombre_receptor
-        filtro_8 = lambda obj: obj.comprobante.nombre_emisor == factura.nombre_receptor
-        filtro_9 = lambda obj: pd.isna(obj.rfc_emisor)
+        filtro_1  = lambda obj: obj.rfc_receptor == factura.rfc_emisor
+        filtro_2  = lambda obj: obj.comprobante.rfc_receptor == factura.rfc_emisor
+        filtro_3  = lambda obj: obj.nombre_receptor == factura.nombre_remisor
+        filtro_4  = lambda obj: obj.comprobante.nombre_receptor == factura.nombre_emisor
+        filtro_5  = lambda obj: obj.rfc_emisor == factura.rfc_receptor
+        filtro_6  = lambda obj: obj.comprobante.rfc_emisor == factura.rfc_receptor
+        filtro_7  = lambda obj: obj.nombre_emisor == factura.nombre_receptor
+        filtro_8  = lambda obj: obj.comprobante.nombre_emisor == factura.nombre_receptor
+        filtro_9  = lambda obj: pd.isna(obj.rfc_emisor)
         filtro_10 = lambda obj: pd.isna(obj.comprobante.rfc_emisor)
         filtro_11 = lambda obj: pd.isna(obj.nombre_emisor)
         filtro_12 = lambda obj: pd.isna(obj.comprobante.nombre_emisor)
@@ -67,11 +66,11 @@ def realizar_conciliacion(uuid):
         filtro_16 = lambda obj: pd.isna(obj.comprobante.nombre_receptor)
         
         #Aplicamos primero los filtros de emisor
-        movimientos_candidatos = list(filter(lambda obj: filtro_1(obj) or filtro_2(obj) or filtro_3(obj) or filtro_4(obj) or filtro_9(obj) or filtro_10(obj) or filtro_11(obj) or filtro_12(obj), movimientos_candidatos))
-        movimientos_candidatos = list(filter(lambda obj: filtro_5(obj) or filtro_6(obj) or filtro_7(obj) or filtro_8(obj) or filtro_13(obj) or filtro_14(obj) or filtro_15(obj) or filtro_16(obj), movimientos_candidatos))
+        movimientos_candidatos = list(filter(lambda obj: filtro_1(obj) or filtro_2(obj) or filtro_3(obj) or filtro_4(obj) or filtro_13(obj) or filtro_14(obj) or filtro_15(obj) or filtro_16(obj), movimientos_candidatos))
+        movimientos_candidatos = list(filter(lambda obj: filtro_5(obj) or filtro_6(obj) or filtro_7(obj) or filtro_8(obj) or filtro_9(obj) or filtro_10(obj) or filtro_11(obj) or filtro_12(obj), movimientos_candidatos))
         
         if len(movimientos_candidatos) == 0:
-            print('No se tiene registro de movimientos emitidos por la empresa ', factura.nombre_receptor)
+            #print('No se tiene registro de movimientos emitidos por la empresa ', factura.nombre_receptor)
             return 3, []
         
         #Ahora verificamos si es pue o ppd
@@ -169,13 +168,17 @@ def realizar_conciliacion(uuid):
         
         #Ahora verificamos si es pue o ppd
         if factura.metodo_pago == 'PUE':
-            #Filtramos solo las facturas que sean de monto igual o mayor al de la factura
+            #Filtramos solo los movimientos que sean de monto igual o mayor al de la factura
             movimientos_candidatos = list(filter(lambda obj: obj.monto >= factura.monto, movimientos_candidatos))
             #Filtramos por fecha solo aquellas que sean del primero del mes anterior en adelante
             # Obtener la fecha del primer día del mes anterior a la fecha del objeto
             fecha_inicio = (factura.fecha_emision - timedelta(days=factura.fecha_emision.day)).replace(day=1)
             # Filtrar los objetos que cumplen con la condición
             movimientos_candidatos = [obj for obj in movimientos_candidatos if obj.fecha >= fecha_inicio]
+            
+            if len(movimientos_candidatos) == 0:
+                print('No se tiene registro de movimientos candidato de monto igual o mayor al de la factura ', factura.nombre_receptor)
+                return 6, []
             
             if len(movimientos_candidatos) > 1:
                 #Verificamos si en la lista existe un movimiento con el monto exacto de la factura
@@ -225,8 +228,7 @@ def realizar_conciliacion(uuid):
             elif len(movimientos_candidatos) == 0:
                 return 6, []
     
-
-bandera, conciliacion = realizar_conciliacion('F4A0496C56E248E3998C8D5CDB91712A')
+bandera, conciliacion = realizar_conciliacion('FD5D99175AFD4878BA5BC9590A1EA228')
 
 if bandera == 3:
     print('No fue posible realizar la conciliacion pues no hay movimientos emitidos')
@@ -269,4 +271,4 @@ elif bandera == 7:
         print('\n')
         print(movimiento.id_transaccion)
         pass
-    pass
+    pass  

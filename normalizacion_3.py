@@ -43,7 +43,7 @@ for index, row in df_movimientos.iterrows():
         #En este caso colocamos el valor del monto del cep al monto del movimiento
         df_movs_copia.iloc[index,df_movs_copia.columns.get_loc('Monto')] = cep_monto
     elif pd.isna(cep_monto) and not pd.isna(monto):
-        #En este caso colocamos el valor del monto del cep al monto del movimiento
+        #En este caso colocamos el valor del monto del movimiento al monto del cep
         df_movs_copia.iloc[index,df_movs_copia.columns.get_loc('CEP_Amount')] = monto
         
     #Validamos las claves de rastreo del movimiento y del cep
@@ -60,15 +60,17 @@ for index, row in df_movimientos.iterrows():
     #Validamos los receptores y emisores
     if valores_empresa.empty:
         print(f"La empresa {empresa} no está registrada en nuestra Base de Conocimiento")
+        #TODO: Hacer un script para guardar la nueva empresa
     else:
         #print(valores_empresa)    
         #Identificamos el tipo de movimiento
-        if row['TipoMovimiento'] == 'Egreso' or row['TipoMovimiento'] == 'Egreso interbancario':
+        if row['TipoMovimiento'] == 'Egreso' or row['TipoMovimiento'] == 'Egreso interbancario' or row['RFCEmisor'] == str(valores_empresa['rfc'].values[0]) or row['CEP_RFCEmisor'] == str(valores_empresa['rfc'].values[0]):
             #Asignamos la información de la empresa a los valores de NombreEmisor, RFCEmisor, CEP_NombreEmisor y CEP_RFCEmisor
             df_movs_copia.iloc[index,df_movs_copia.columns.get_loc('NombreEmisor')] = valores_empresa['empresa']
             df_movs_copia.iloc[index,df_movs_copia.columns.get_loc('RFCEmisor')] = valores_empresa['rfc']
             df_movs_copia.iloc[index,df_movs_copia.columns.get_loc('CEP_NombreEmisor')] = valores_empresa['empresa']
             df_movs_copia.iloc[index,df_movs_copia.columns.get_loc('CEP_RFCEmisor')] = valores_empresa['rfc']
+            df_movs_copia.iloc[index,df_movs_copia.columns.get_loc('TipoMovimiento')] = 'Egreso'
             
             #Ahora verificamos la empresa receptora
             #Validamos primero el NombreReceptor
@@ -140,4 +142,4 @@ for index, row in df_movimientos.iterrows():
             pass
         pass
       
-df_movs_copia.to_csv('Data/movimientos_normalized_3.csv', index=False)
+df_movs_copia.to_csv('Data/movimientos_normalized_4.csv', index=False)
