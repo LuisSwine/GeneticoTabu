@@ -42,7 +42,6 @@ for index, row in subconjunto_cxc.iterrows():
                 print(movimiento.id_transaccion)
                 print(movimiento.monto)
                 pass
-            input('')
             pass
         
     elif bandera == 1:
@@ -58,7 +57,6 @@ for index, row in subconjunto_cxc.iterrows():
                 print(movimiento.id_transaccion)
                 print(movimiento.monto)
                 pass
-            input('')
             pass
             
         

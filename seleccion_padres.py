@@ -1,3 +1,10 @@
+"""
+CLASE MODULO DE SELECCION DE PADRES
+
+Descripción: Este módulo integra los diferentes métodos o estrategias que pueden implementarse en el algoritmo
+genético para realizar la selección de los padres que se cruzaran para la siguiente generación o iteración.
+
+"""
 #PRIMERO IMPORTAMOS LAS BIBLIOTECAS NECESARIAS
 import random
 

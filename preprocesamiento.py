@@ -1,3 +1,10 @@
+"""
+MODULO DE PREPROCESAMIENTO
+
+Descripción: Este módulo integra los métodos necesarios para poder realizar el preprocesamiento de movimientos
+y facturas aplicando los respectivos filtros y convirtiendo los registros en objetos de sus respectivas clases
+
+"""
 #PRIMERO IMPORTAMOS TODAS LAS LIBRERIAS NECESARIAS
 import pandas as pd
 import datetime

@@ -1,3 +1,11 @@
+"""
+MODULO GENERACION DE VECINDARIO
+
+Descripción: En este modulo se definen las funciones que son útiles para generar los posibles vecinos de una
+solución candidata al momento de ejecutar la búsqueda tabú 
+
+"""
+
 def generar_vecindario_swap(vector):
     vecindario = []
     n = len(vector)

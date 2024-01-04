@@ -1,3 +1,9 @@
+"""
+MODULO FUNCION
+
+Descripción: Aqui definimos la función que determina la calidad de una solución candidata
+
+"""
 #Primero creamos la funcion de aptitud para evaluar a los candidatos
 def calidad_candidato(monto_objetivo, vector_binario, vector_candidatos):
     sumatoria = 0 #Inicializamos el sumador para llevar la suma de los montos de los movimientos candidatos

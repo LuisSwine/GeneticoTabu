@@ -228,7 +228,7 @@ def realizar_conciliacion(uuid):
             elif len(movimientos_candidatos) == 0:
                 return 6, []
     
-bandera, conciliacion = realizar_conciliacion('FD5D99175AFD4878BA5BC9590A1EA228')
+""" bandera, conciliacion = realizar_conciliacion('FD5D99175AFD4878BA5BC9590A1EA228')
 
 if bandera == 3:
     print('No fue posible realizar la conciliacion pues no hay movimientos emitidos')
@@ -271,4 +271,4 @@ elif bandera == 7:
         print('\n')
         print(movimiento.id_transaccion)
         pass
-    pass  
+    pass   """

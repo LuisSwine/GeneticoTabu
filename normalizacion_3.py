@@ -1,3 +1,11 @@
+"""
+MODULO DE NORMALIZACIÓN 
+
+Descripción: Este módulo funciona para normalizar los movimientos con ayuda de la base de conocimiento extraída
+completando los datos faltantes con los datos registrados
+
+"""
+
 import pandas as pd
 from datetime import datetime
 

@@ -1,3 +1,11 @@
+"""
+CLASE MOVIMIENTO
+
+Descripción: Clase que almacena los datos más relevantes de los movimientos sin incluir los datos del CEP, 
+pues estos se referencian a traves de un objeto de la clase CEP
+
+"""
+
 #DEFINIMOS LA CLASE MOVIMIENTO PARA GUARDAR INFORMACIÓN RELEVANTE
 class Movimiento:
     id_transaccion = None

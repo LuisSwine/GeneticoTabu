@@ -1,3 +1,11 @@
+"""
+CLASE FACTURA
+
+Descripción: Clase que almacena los datos más relevantes de la factura extraídos de cada registro y define
+los mmétodos útiles de la clase
+
+"""
+
 #Definimos la clase factura donde guardaremos los datos importantes de la factura
 class Factura:
     uuid = None

@@ -1,3 +1,10 @@
+"""
+MODULO MUTACION
+
+Descripción: En este módulo se definen los diferentes métodos o estrategias que pueden ser utilizadas para 
+aplicar una mutación a las soluciones candidatas hijas que son generadas en el algoritmo genético
+
+"""
 #PRIMERO IMPORTAMOS LAS LIBRERÍAS NECESARIAS
 import random
 

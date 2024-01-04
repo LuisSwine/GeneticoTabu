@@ -1,3 +1,9 @@
+"""
+MODULO BÚSQUEDA TABÚ
+
+Descripción: En este módulo se define el algoritmo de la búsqueda tabú
+
+"""
 #Importamos el modulo funcion pues lo utilizaremos
 import funcion
 
@@ -19,7 +25,6 @@ def tabu_search(solucion_inicial, tabu_length, monto_objetivo, vector_candidatos
         print(f"Mejor fitness {best_fitness}")
         print(f"Mejor solution {best_solution}")
 
-        #TODO: Mejorar la generación de vecindario
         vecinos = [] #Inicializamos el vector de vecinos del vector solución actual
         #Generamos el vecindario de soluciones
         for i in range(len(current_solution)):

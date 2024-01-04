@@ -1,3 +1,12 @@
+"""
+MODULO SELECCION DE SOBREVIVIENTES
+
+Descripción: En este módulo se define la estrategia de selección de sobrevivientes, que si bien pueden ser las
+mismas que para la selección de padres, cuando se busca un algoritmo rápido y discriminante se recomienda 
+utilizar una estrategia elitista o por extinción
+
+"""
+
 #Definimos la estrategia de selección de sobrevivientes la cuál será una estrategia elitista
 def seleccion_por_extincion(poblacion, tamano_seleccion):
 

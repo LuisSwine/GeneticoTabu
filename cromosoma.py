@@ -1,3 +1,12 @@
+"""
+CLASE CROMOSOMA
+
+Descripción: Clase que define los atributos y métodos de los individuos o cromosomas que formaran parte de
+la población de algoritmo híbrido entre optimización genética y algoritmo tabú.
+
+"""
+
+
 import random
 import funcion
 

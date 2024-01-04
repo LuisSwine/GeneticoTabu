@@ -1,3 +1,11 @@
+"""
+CLASE CEP
+
+Descripción: Clase que almacena los datos más relevantes del Comprobante CEP extraídos de cada movimiento 
+
+"""
+
+
 #Definimos la clase CEP donde rescataremos la información principal de los Comprobantes Electrónicos de Pago
 class CEP:
     fecha = None

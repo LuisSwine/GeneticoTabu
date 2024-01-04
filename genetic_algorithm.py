@@ -1,3 +1,12 @@
+"""
+MODULO ALGORITMO HIBRIDO
+
+Descripción: En este modulo se definen los siguientes métodos o funciones:
+-Requerimiento de paro: evalua el estado del algoritmo en cada iteración para determinar si parar o continuar
+-Algoritmo híbrido entre algoritmo genético y búsqueda tabú
+
+"""
+
 #PRIMERO IMPORTAMOS LOS MODULOS PERSONALIZADOS
 import poblacion
 import cromosoma

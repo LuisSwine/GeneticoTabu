@@ -1,3 +1,10 @@
+"""
+CLASE POBLACION
+
+Descripción: En esta clase se definen los atributos y métodos de la población de individuos que se iterará en el
+algoritmo genético con tabú.
+
+"""
 #Importamos el modulo personalizado de cromosoma para utilizar la clase
 import cromosoma
 
